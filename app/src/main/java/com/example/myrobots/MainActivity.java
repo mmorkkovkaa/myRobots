@@ -2,6 +2,7 @@ package com.example.myrobots;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView energy1, energy2;
     private TextView lasers1, lasers2;
     private Button btnStart, btnFight, btnGameOver;
-    private LottieAnimationView lotty1, lotty2;
+    private LottieAnimationView lotty1, lotty2, lotty_night_fire;
     private LinearLayout imagesRobotsLayout;
 
 
@@ -44,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             }
             private void showGameOverButton() {
                 btnGameOver.setVisibility(View.VISIBLE);
+                btnGameOver.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
             }
 
             @Override
@@ -72,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                     lotty1.setVisibility(View.INVISIBLE);
                     lotty2.setVisibility(View.INVISIBLE);
+                    lotty_night_fire.setVisibility(View.INVISIBLE);
 
 
                     btnGameOver.setVisibility(View.VISIBLE);
@@ -81,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                     imagesRobotsLayout.setVisibility(View.INVISIBLE);
                     lotty1.setVisibility(View.VISIBLE);
                     lotty2.setVisibility(View.VISIBLE);
+                    lotty_night_fire.setVisibility(View.VISIBLE);
+
 
 
                     String lasers1Value = lasers1.getText().toString();
@@ -148,9 +160,11 @@ public class MainActivity extends AppCompatActivity {
 
         lotty1 = findViewById(R.id.lotty_drive1);
         lotty2 = findViewById(R.id.lotty_drive2);
+        lotty_night_fire = findViewById(R.id.lotty_night_fire);
 
 
         lotty1.setAnimation(R.raw.red_robot);
+        lotty_night_fire.setAnimation(R.raw.animation_fire);
         lotty2.setAnimation(R.raw.y_robot);
     }
 
